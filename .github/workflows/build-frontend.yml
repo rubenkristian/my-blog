@@ -35,7 +35,7 @@ jobs:
         # Run the build using Node instead of the Bun runtime
         run: npm run build 
 
-      - name: Archive build output
+      - name: Archive build output .nitro/types
         run: tar -czf build.tar.gz .output
 
       - name: Upload to GitHub Release
