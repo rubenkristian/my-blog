@@ -12,6 +12,15 @@ export default defineConfig({
   },
   
   server: {
-    preset: "bun"
+    routeRules: {
+      "/": { swr: 60 * 60 * 3}
+    },
+    storage: {
+      cache: {
+        driver: "fs",
+        base: "./.cache" 
+      }
+    },
+    preset: "bun",
   }
 });
