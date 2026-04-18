@@ -14,7 +14,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22' # Required for native node:fs globSync
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -25,7 +30,8 @@ jobs:
         run: bun install
 
       - name: Build project
-        run: bun run build
+        # Run the build using Node instead of the Bun runtime
+        run: npm run build 
 
       - name: Archive build output
         run: tar -czf build.tar.gz .output
